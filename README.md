@@ -1,5 +1,5 @@
 # Enigma
-After watching the Imitation Game, I just had to see how one works.
+After watching [The Imitation Game](http://www.imdb.com/title/tt2084970/), I really wanted to know how one of these machines worked. What better way than try to build virtual version.
 
 This is a very basic implementation of the first generation of Enigma machines used in WWII. 
 
