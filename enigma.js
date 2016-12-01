@@ -44,7 +44,7 @@ var Wheel = function(name, type, offset){
   this._name = name;
   this._mapping = [alphabet, type[0]];
   this._triggers = (type[1]||'').split('').map(function(t){ return alphabet.indexOf(t); });
-  this._initial_offset = offset || 0;
+  this._initial_offset = alphabet.indexOf(offset || 'A');
   this.reset();
 }
   Wheel.prototype.map = function(i, dir){ 
@@ -66,7 +66,7 @@ var Enigma = function(){
 }
   Enigma.prototype.configure = function(_wheels,offsets,pegboard_map){
     _wheels = _wheels || ['RB','I','II','III'];
-    offsets = offsets || [0,0,0];
+    offsets = offsets || ['A','A','A'];
     pegboard_map = pegboard_map || [];
 
     this.reflector     = new Wheel('reflector', wheels[_wheels[0]]);
