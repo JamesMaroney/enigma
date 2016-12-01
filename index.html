@@ -17,7 +17,7 @@
   var test_stepping = function(rotors, steps){
     var rotors_arr = ['B'].concat(rotors.split(' ')),
       steps_arr = steps.split(' '),
-      initial = steps_arr.shift();
+      initial = ['A'].concat(steps_arr.shift().split(''));
 
     enigma.configure(rotors_arr, initial);
     var actual = steps_arr.reduce(

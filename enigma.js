@@ -81,14 +81,14 @@ var Enigma = function(){
 }
   Enigma.prototype.configure = function(_wheels,offsets,pegboard_map){
     _wheels = _wheels || ['B','I','II','III'];
-    offsets = offsets || ['A','A','A'];
+    offsets = offsets || ['A','A','A','A'];
     pegboard_map = pegboard_map || [];
 
-    this.reflector     = new Wheel('reflector', wheels[_wheels[0]]);
+    this.reflector     = new Wheel('reflector', wheels[_wheels[0]], offsets[0]);
     this.wheels = {};
-    this.wheels.left   = new Wheel('left', wheels[_wheels[1]], offsets[0]);
-    this.wheels.middle = new Wheel('middle', wheels[_wheels[2]], offsets[1]);
-    this.wheels.right  = new Wheel('right', wheels[_wheels[3]], offsets[2]);
+    this.wheels.left   = new Wheel('left', wheels[_wheels[1]], offsets[1]);
+    this.wheels.middle = new Wheel('middle', wheels[_wheels[2]], offsets[2]);
+    this.wheels.right  = new Wheel('right', wheels[_wheels[3]], offsets[3]);
     this.pegboard = new Wheel(
       'pegboard',
       [pegboard_map.reduce(function(acc, pair){ return swap(acc, pair); }, alphabet)]
