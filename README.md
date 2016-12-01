@@ -18,7 +18,7 @@ All settings have sane defaults.
 var wheels = [ 'B', 'I', 'II', 'III' ]; // index 0 selects the Reflector. One of 'B' or 'C'
                                         // indicies 1-3 select the rotors for Left, Center and Right, respectively.
                                         // One of 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', or 'VIII'
-var wheel_offset = [0, 0, 0];           // initial rotor offsets, Left to Right. 
+var wheel_offset = ['A', 'A', 'A', 'A'];// initial rotor offsets, Left to Right with Refelctor first.
 var pegboard_mappings = ['AX','QT'];    // mappings of letters for the pegboard
 var enigma = new Enigma( wheels, wheel_offsets, pegboard_mappings );
 ```
@@ -54,5 +54,7 @@ e.getState(); // {wheels:[{window:"A"},{window:"A"},{window:"B"}]}
 ### 
 References:
 * [Technical Description](http://users.telenet.be/d.rijmenants/en/enigmatech.htm)
+* [Enigma Rotor Wiring](http://www.cryptomuseum.com/crypto/enigma/wiring.htm)
 * [Flash Reference Implementation](http://enigmaco.de/enigma/enigma.html)
 * [Sample Code Book Entry](https://qph.ec.quoracdn.net/main-qimg-bd0b5173bc897178c9ceb2ecb42d49cd-c?convert_to_webp=true)
+* [Double-Stepping Test Cases](http://arduinoenigma.blogspot.com/2014/11/some-test-cases-for-double-stepping.html)
