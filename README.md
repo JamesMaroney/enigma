@@ -1,5 +1,5 @@
 # Enigma
-After watching the Imitation Game, I just had to see how one works.
+After watching [The Imitation Game](http://www.imdb.com/title/tt2084970/), I really wanted to know how one of these machines worked. What better way than try to build virtual version.
 
 This is a very basic implementation of the first generation of Enigma machines used in WWII. 
 
@@ -27,6 +27,19 @@ var enigma = new Enigma( wheels, wheel_offsets, pegboard_mappings );
 You can reconfigure after construction.
 ```
 enigma.configure( ['B', 'IV', 'V', 'III'], [3, 12, 4], ['RA', 'KE', 'WD'] );
+```
+
+### Encoding
+You can encode an entire string, or character-by-character. Just remember to `.reset()` when starting a new message.
+```
+var enigma = new Enigma();
+enigma.encode('hello');   // ILBDA
+enigma.reset();
+enigma.encode('h');  // I
+enigma.encode('e');  // L
+enigma.encode('l');  // B
+enigma.encode('l');  // D
+enigma.encode('o');  // A
 ```
 
 ### 
