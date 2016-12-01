@@ -29,6 +29,19 @@ You can reconfigure after construction.
 enigma.configure( ['RB', 'IV', 'V', 'III'], [3, 12, 4], ['RA', 'KE', 'WD'] );
 ```
 
+### Encoding
+You can encode an entire string, or character-by-character. Just remember to `.reset()` when starting a new message.
+```
+var enigma = new Enigma();
+enigma.encode('hello');   // ILBDA
+enigma.reset();
+enigma.encode('h');  // I
+enigma.encode('e');  // L
+enigma.encode('l');  // B
+enigma.encode('l');  // D
+enigma.encode('o');  // A
+```
+
 ### 
 References:
 * [Technical Description](http://users.telenet.be/d.rijmenants/en/enigmatech.htm)

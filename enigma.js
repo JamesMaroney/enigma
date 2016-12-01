@@ -83,7 +83,6 @@ var Enigma = function(){
   Enigma.prototype.encode = function(input){
     input = input.toUpperCase();
     var output = '', _i, _r;
-    this.reset();
     for(var i=0,j=input.length; i<j; i++){
       _r = this.wheels.right.tick();
       if(_r) _r = this.wheels.middle.tick();
