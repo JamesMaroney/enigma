@@ -16,11 +16,11 @@
 
 var alphabet  = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
     wheels = {
-	'I'    : ['EKMFLGDQVZNTOWYHXUSPAIBRCJ',17],
-	'II'   : ['AJDKSIRUXBLHWTMCQGZNPYFVOE',5],
-	'III'  : ['BDFHJLCPRTXVZNYEIWGAKMUSQO',22],
-	'IV'   : ['ESOVPZJAYQUIRHXLNFTGKDCMWB',10],
-	'V'    : ['VZBRGITYUPSDNHLXAWMJQOFECK',0],
+	'I'    : ['EKMFLGDQVZNTOWYHXUSPAIBRCJ','R'],
+	'II'   : ['AJDKSIRUXBLHWTMCQGZNPYFVOE','F'],
+	'III'  : ['BDFHJLCPRTXVZNYEIWGAKMUSQO','W'],
+	'IV'   : ['ESOVPZJAYQUIRHXLNFTGKDCMWB','K'],
+	'V'    : ['VZBRGITYUPSDNHLXAWMJQOFECK','A'],
 	'RB'   : ['YRUHQSLDPXNGOKMIEBFZCWVJAT'],
 	'RC'   : ['FVPJIAOYEDRZXWGCTKUQSBNMHL']
      };
@@ -39,7 +39,7 @@ var swap = function(str,pair){
 var Wheel = function(name, type, offset){
   this._name = name;
   this._mapping = [alphabet, type[0]];
-  this._trigger = type[1];
+  this._trigger = alphabet.indexOf(type[1]);
   this._initial_offset = offset || 0;
   this.reset();
 }
