@@ -42,6 +42,15 @@ enigma.encode('l');  // D
 enigma.encode('o');  // A
 ```
 
+### Current State
+You can inspect the current state of the machine at any time.
+```
+e = new Enigma();
+e.getState(); // {wheels:[{window:"A"},{window:"A"},{window:"A"}]}
+e.encode('A');
+e.getState(); // {wheels:[{window:"A"},{window:"A"},{window:"B"}]}
+```
+
 ### 
 References:
 * [Technical Description](http://users.telenet.be/d.rijmenants/en/enigmatech.htm)
