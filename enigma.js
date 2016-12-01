@@ -25,8 +25,8 @@ var alphabet  = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
 	'VII'  : ['NZJHGRCXMYSWBOUFAIVLPEKQDT','AN'],
 	'VIII' : ['FKQHTLXOCBJSPDZRAMEWNIUYGV','AN'],
 
-	'RB'   : ['YRUHQSLDPXNGOKMIEBFZCWVJAT'],
-	'RC'   : ['FVPJIAOYEDRZXWGCTKUQSBNMHL']
+	'B'   : ['YRUHQSLDPXNGOKMIEBFZCWVJAT'],
+	'C'   : ['FVPJIAOYEDRZXWGCTKUQSBNMHL']
      };
 
 var swap = function(str,pair){
@@ -73,7 +73,7 @@ var Enigma = function(){
   this.configure.apply(this,arguments);
 }
   Enigma.prototype.configure = function(_wheels,offsets,pegboard_map){
-    _wheels = _wheels || ['RB','I','II','III'];
+    _wheels = _wheels || ['B','I','II','III'];
     offsets = offsets || ['A','A','A'];
     pegboard_map = pegboard_map || [];
 

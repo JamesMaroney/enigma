@@ -15,18 +15,18 @@ var original = enigma.encode( encrypted );      // "HELLOWORLD"
 You can configure the Enigma machine during construction.
 All settings have sane defaults.
 ```
-var wheels = [ 'RB', 'I', 'II', 'III' ]; // index 0 selects the Reflector. One of 'RA' or 'RB'
-                                         // indicies 1-3 select the rotors for Left, Center and Right, respectively.
-                                         // One of 'I', 'II', 'III', 'IV' or 'V'
-var wheel_offset = [0, 0, 0];            // initial rotor offsets, Left to Right. 
-var pegboard_mappings = ['AX','QT'];     // mappings of letters for the pegboard
+var wheels = [ 'B', 'I', 'II', 'III' ]; // index 0 selects the Reflector. One of 'B' or 'C'
+                                        // indicies 1-3 select the rotors for Left, Center and Right, respectively.
+                                        // One of 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', or 'VIII'
+var wheel_offset = [0, 0, 0];           // initial rotor offsets, Left to Right. 
+var pegboard_mappings = ['AX','QT'];    // mappings of letters for the pegboard
 var enigma = new Enigma( wheels, wheel_offsets, pegboard_mappings );
 ```
 
 ### Configuration
 You can reconfigure after construction.
 ```
-enigma.configure( ['RB', 'IV', 'V', 'III'], [3, 12, 4], ['RA', 'KE', 'WD'] );
+enigma.configure( ['B', 'IV', 'V', 'III'], [3, 12, 4], ['RA', 'KE', 'WD'] );
 ```
 
 ### 
