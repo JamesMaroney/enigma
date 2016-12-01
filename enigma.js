@@ -60,6 +60,9 @@ var Wheel = function(name, type, offset){
     this._ticks = (this._ticks + 1) % alphabet.length;
     return this._triggers.indexOf(this._ticks) > -1;
   }
+  Wheel.prototype.isOnTrigger = function(){
+    return this._triggers.indexOf((this._ticks + 1) % alphabet.length) > -1;
+  }
   Wheel.prototype.getState = function(){
     return {
       window: alphabet[ this._ticks ]
@@ -96,7 +99,7 @@ var Enigma = function(){
     var output = '', _i, _r;
     for(var i=0,j=input.length; i<j; i++){
       _r = this.wheels.right.tick();
-      if(_r) _r = this.wheels.middle.tick();
+      if(_r || this.wheels.middle.isOnTrigger()) _r = this.wheels.middle.tick();
       if(_r) _r = this.wheels.left.tick();
 
       _i = alphabet.indexOf(input[i]);
