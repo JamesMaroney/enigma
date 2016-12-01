@@ -7,11 +7,58 @@
 
 <script src='enigma.js'></script>
 <script>
+
+  var assert = function(expected,actual){
+    console.log( (expected==actual)?'✓':'✖', 'expected: '+expected, 'actual: '+actual);
+  }
+  var read_windows = function(e){
+   return e.getState().wheels.map(function(w){return w.window;}).join('');
+  }
+  var test_stepping = function(rotors, steps){
+    var rotors_arr = ['RB'].concat(rotors.split(' ')),
+      steps_arr = steps.split(' '),
+      initial = steps_arr.shift();
+
+    enigma.configure(rotors_arr, initial);
+    var actual = steps_arr.reduce(
+      function(acc,s){ enigma.encode('a'); return acc+' '+read_windows(enigma)}, 
+      read_windows(enigma)
+    );
+    assert(steps,actual);
+  }
+
   var enigma = new Enigma();
-  var original = 'helloworld';
-  var encrypted = enigma.encode(original);
-  var unencrypted = enigma.reset().encode(encrypted);
-  console.log( (original.toUpperCase() == unencrypted)?'✓':'✖', original, encrypted, unencrypted );
+
+  assert('ILBDAAMTAZ', enigma.reset().encode('helloworld'));
+  assert('HELLOWORLD', enigma.reset().encode('ILBDAAMTAZ'));
+
+  // var original = 'helloworld';
+  // var encrypted = enigma.encode(original);
+  // var unencrypted = enigma.reset().encode(encrypted);
+  // console.log( (original.toUpperCase() == unencrypted)?'✓':'✖', original, encrypted, unencrypted );
+
+
+
+  test_stepping('I II III', 'ADU ADV AEW BFX');
+
+  test_stepping('VI VII VIII', 'ZYY ZYZ ZZA AAB');
+  test_stepping('VI VII VIII', 'MLL MLM MMN NNO');
+  test_stepping('VI VII VIII', 'ZZY AAZ ABA ABB');
+  test_stepping('VI VII VIII', 'MML NNM NON NOO');
+  test_stepping('VI VII VIII', 'ZZZ AAA AAB');
+  test_stepping('VI VII VIII', 'MMM NNN NNO');
+  test_stepping('VI VII VIII', 'YYY YYZ YZA ZAB');
+  test_stepping('VI VII VIII', 'LLL LLM LMN MNO');
+  test_stepping('VI VII VIII', 'YZY ZAZ ZBA');
+  test_stepping('VI VII VIII', 'LML MNM MON');
+  test_stepping('VI VII VIII', 'YZZ ZAA ZAB');
+  test_stepping('VI VII VIII', 'LMM MNN MNO');
+  test_stepping('VI VII VIII', 'AZY BAZ BBA BBB');
+  test_stepping('VI VII VIII', 'NML ONM OON OOO');
+  test_stepping('VI VII VIII', 'ZZX AAY AAZ ABA');
+  test_stepping('VI VII VIII', 'MMK NNL NNM NON');
+  test_stepping('VI VII VIII', 'AYZ AZA BAB');
+  test_stepping('VI VII VIII', 'NLM NMN ONO');
 </script>
 </body>
 </html>
