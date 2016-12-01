@@ -60,6 +60,11 @@ var Wheel = function(name, type, offset){
     this._ticks = (this._ticks + 1) % alphabet.length;
     return this._triggers.indexOf(this._ticks) > -1;
   }
+  Wheel.prototype.getState = function(){
+    return {
+      window: alphabet[ this._ticks ]
+    };
+  }
 
 var Enigma = function(){
   this.configure.apply(this,arguments);
@@ -109,6 +114,12 @@ var Enigma = function(){
     }
     return output;
   };
+  Enigma.prototype.getState = function(){
+    return {
+      wheels: [this.wheels.left, this.wheels.middle, this.wheels.right]
+                .map(function(w){ return w.getState() }) 
+    };
+  }
 
 return Enigma;
 
