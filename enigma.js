@@ -43,7 +43,7 @@ var swap = function(str,pair){
 var Wheel = function(name, type, offset){
   this._name = name;
   this._mapping = [alphabet, type[0]];
-  this._trigger = alphabet.indexOf(type[1]);
+  this._triggers = (type[1]||'').split('').map(function(t){ return alphabet.indexOf(t); });
   this._initial_offset = offset || 0;
   this.reset();
 }
@@ -58,7 +58,7 @@ var Wheel = function(name, type, offset){
   Wheel.prototype.reset = function(){ this._ticks = this._initial_offset; }
   Wheel.prototype.tick = function(){ 
     this._ticks = (this._ticks + 1) % alphabet.length;
-    return this._ticks == this._trigger;
+    return this._triggers.indexOf(this._ticks) > -1;
   }
 
 var Enigma = function(){
