@@ -10,7 +10,7 @@
   var enigma = new Enigma();
   var original = 'helloworld';
   var encrypted = enigma.encode(original);
-  var unencrypted = enigma.encode(encrypted);
+  var unencrypted = enigma.reset().encode(encrypted);
   console.log( (original.toUpperCase() == unencrypted)?'✓':'✖', original, encrypted, unencrypted );
 </script>
 </body>

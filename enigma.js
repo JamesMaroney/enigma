@@ -55,7 +55,7 @@ var Wheel = function(name, type, offset){
     if(out_index < 0) out_index = alphabet.length + out_index;
     return out_index;
   }
-  Wheel.prototype.reset = function(){ this._ticks = this._initial_offset; }
+  Wheel.prototype.reset = function(){ this._ticks = this._initial_offset; return this; }
   Wheel.prototype.tick = function(){ 
     this._ticks = (this._ticks + 1) % alphabet.length;
     return this._triggers.indexOf(this._ticks) > -1;
@@ -78,16 +78,17 @@ var Enigma = function(){
       'pegboard',
       [pegboard_map.reduce(function(acc, pair){ return swap(acc, pair); }, alphabet)]
     );
+    this.reset();
   };
   Enigma.prototype.reset = function(){
     this.wheels.left.reset();
     this.wheels.middle.reset();
     this.wheels.right.reset();
+    return this;
   };
   Enigma.prototype.encode = function(input){
     input = input.toUpperCase();
     var output = '', _i, _r;
-    this.reset();
     for(var i=0,j=input.length; i<j; i++){
       _r = this.wheels.right.tick();
       if(_r) _r = this.wheels.middle.tick();
