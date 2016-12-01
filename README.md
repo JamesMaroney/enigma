@@ -7,8 +7,8 @@ This is a very basic implementation of the first generation of Enigma machines u
 
 ```
 var enigma = new Enigma( /* configuration */ );  // sane defaults for all configuration settings
-var encrypted = enigma.encrypt( 'helloworld' );  // "ILBDAAMTAZ"
-var original = enigma.encrypt( encrypted );      // "HELLOWORLD"
+var encrypted = enigma.encode( 'helloworld' );  // "ILBDAAMTAZ"
+var original = enigma.encode( encrypted );      // "HELLOWORLD"
 ```
 
 ### Construction
