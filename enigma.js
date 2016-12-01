@@ -84,11 +84,10 @@ var Enigma = function(){
     offsets = offsets || ['A','A','A','A'];
     pegboard_map = pegboard_map || [];
 
-    this.reflector     = new Wheel('reflector', wheels[_wheels[0]], offsets[0]);
-    this.wheels = {};
-    this.wheels.left   = new Wheel('left', wheels[_wheels[1]], offsets[1]);
-    this.wheels.middle = new Wheel('middle', wheels[_wheels[2]], offsets[2]);
-    this.wheels.right  = new Wheel('right', wheels[_wheels[3]], offsets[3]);
+    this.reflector     = new Wheel('reflector', wheels[_wheels.shift()], offsets.shift());
+    this.wheels = _wheels.map(function(type,i){
+      return new Wheel(i, wheels[type], offsets[i]);
+    });
     this.pegboard = new Wheel(
       'pegboard',
       [pegboard_map.reduce(function(acc, pair){ return swap(acc, pair); }, alphabet)]
@@ -96,28 +95,29 @@ var Enigma = function(){
     this.reset();
   };
   Enigma.prototype.reset = function(){
-    this.wheels.left.reset();
-    this.wheels.middle.reset();
-    this.wheels.right.reset();
+    this.wheels.forEach(function(w){w.reset()});
     return this;
   };
   Enigma.prototype.encode = function(input){
     input = input.toUpperCase();
     var output = '', _i, _r;
+    var rightmost = this.wheels[ this.wheels.length - 1 ],
+        middlemost = this.wheels[ this.wheels.length - 2 ],
+	leftmost = this.wheels[ this.wheels.length - 3 ];
     for(var i=0,j=input.length; i<j; i++){
-      _r = this.wheels.right.tick();
-      if(_r || this.wheels.middle.isOnTrigger()) _r = this.wheels.middle.tick();
-      if(_r) _r = this.wheels.left.tick();
+      _r = rightmost.tick();
+      if(_r || middlemost.isOnTrigger()) _r = middlemost.tick();
+      if(_r) _r = leftmost.tick();
 
       _i = alphabet.indexOf(input[i]);
       _i = this.pegboard.map(_i);
-      _i = this.wheels.right.map(_i);
-      _i = this.wheels.middle.map(_i);
-      _i = this.wheels.left.map(_i);
+      _i = rightmost.map(_i);
+      _i = middlemost.map(_i);
+      _i = leftmost.map(_i);
       _i = this.reflector.map(_i);
-      _i = this.wheels.left.map(_i, -1);
-      _i = this.wheels.middle.map(_i, -1); 
-      _i = this.wheels.right.map(_i, -1);
+      _i = leftmost.map(_i, -1);
+      _i = middlemost.map(_i, -1); 
+      _i = rightmost.map(_i, -1);
       _i = this.pegboard.map(_i);
 
       output += alphabet[_i];
@@ -126,8 +126,7 @@ var Enigma = function(){
   };
   Enigma.prototype.getState = function(){
     return {
-      wheels: [this.wheels.left, this.wheels.middle, this.wheels.right]
-                .map(function(w){ return w.getState() }) 
+      wheels: this.wheels.map(function(w){ return w.getState() }) 
     };
   }
 
