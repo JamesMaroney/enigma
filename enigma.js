@@ -36,7 +36,7 @@ var alphabet  = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
         'CThin': ['RDOBJNTKVEHMLFCWZAXGYIPSUQ'],
      };
 
-var swap = function(str,pair){
+var swapCharsInString = function(str,pair){
   pair = pair.split('');
   var arr = str.split(''),
       i=str.indexOf(pair[0]),
@@ -90,7 +90,7 @@ var Enigma = function(){
     });
     this.pegboard = new Wheel(
       'pegboard',
-      [pegboard_map.reduce(function(acc, pair){ return swap(acc, pair); }, alphabet)]
+      [pegboard_map.reduce(function(acc, pair){ return swapCharsInString(acc, pair); }, alphabet)]
     );
     this.reset();
   };
