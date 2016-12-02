@@ -29,13 +29,22 @@
 
   var enigma = new Enigma();
 
+  console.group('HelloWorld, 3-Rotor');
+  enigma.configure('B I II III'.split(' '), 'A A A A'.split(' '));
   assert('ILBDAAMTAZ', enigma.reset().encode('helloworld'));
   assert('HELLOWORLD', enigma.reset().encode('ILBDAAMTAZ'));
+  var intermediate = enigma.reset().encode('HELLOWORLD');
+  assert('HELLOWORLD', enigma.reset().encode( intermediate ));
+  console.groupEnd();
 
-  // var original = 'helloworld';
-  // var encrypted = enigma.encode(original);
-  // var unencrypted = enigma.reset().encode(encrypted);
-  // console.log( (original.toUpperCase() == unencrypted)?'✓':'✖', original, encrypted, unencrypted );
+  
+  console.group('HelloWorld, 4-Rotor');
+  enigma.configure('BThin Gamma I II III'.split(' '), 'A A A A A'.split(' '));
+  assert('GPCKIKIOEG', enigma.reset().encode('helloworld'));
+  assert('HELLOWORLD', enigma.reset().encode('GPCKIKIOEG'));
+  var intermediate = enigma.reset().encode('HELLOWORLD');
+  assert('HELLOWORLD', enigma.reset().encode( intermediate ));
+  console.groupEnd();
 
 
 

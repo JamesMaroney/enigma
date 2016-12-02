@@ -25,15 +25,15 @@ var alphabet  = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
 	'VII'  : ['NZJHGRCXMYSWBOUFAIVLPEKQDT','AN'],
 	'VIII' : ['FKQHTLXOCBJSPDZRAMEWNIUYGV','AN'],
          // Thins
-        //'Beta' : ['LEYJVCNIXWPBQMDRTAKZGFUHOS'],
-        //'Gamma': ['FSOKANUERHMBTIYCWLQPZXVGJD'],
+        'Beta' : ['LEYJVCNIXWPBQMDRTAKZGFUHOS'],
+        'Gamma': ['FSOKANUERHMBTIYCWLQPZXVGJD'],
 
 	 // Reflectors
 	'B'    : ['YRUHQSLDPXNGOKMIEBFZCWVJAT'],
 	'C'    : ['FVPJIAOYEDRZXWGCTKUQSBNMHL'],
          // Thins
-        //'BThin': ['ENKQAUYWJICOPBLMDXZVFTHRGS'],
-        //'CThin': ['RDOBJNTKVEHMLFCWZAXGYIPSUQ'],
+        'BThin': ['ENKQAUYWJICOPBLMDXZVFTHRGS'],
+        'CThin': ['RDOBJNTKVEHMLFCWZAXGYIPSUQ'],
      };
 
 var swap = function(str,pair){
