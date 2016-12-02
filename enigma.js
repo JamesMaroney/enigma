@@ -84,7 +84,7 @@ var Enigma = function(){
     offsets = offsets || ['A','A','A','A'];
     pegboard_map = pegboard_map || [];
 
-    this.reflector     = new Wheel('reflector', wheels[_wheels.shift()], offsets.shift());
+    this.reflector = new Wheel('reflector', wheels[_wheels.shift()], offsets.shift());
     this.wheels = _wheels.map(function(type,i){
       return new Wheel(i, wheels[type], offsets[i]);
     });
