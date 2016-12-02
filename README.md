@@ -15,13 +15,19 @@ var original = enigma.encode( encrypted );      // "HELLOWORLD"
 You can configure the Enigma machine during construction.
 All settings have sane defaults.
 ```
-var wheels = [ 'B', 'I', 'II', 'III' ]; // index 0 selects the Reflector. One of 'B' or 'C'
+var wheels = [ 'B', 'I', 'II', 'III' ]; // index 0 selects the Reflector. One of 'B', 'C', 'BThin', or 'CThin'
                                         // indicies 1-3 select the rotors for Left, Center and Right, respectively.
-                                        // One of 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', or 'VIII'
+                                        // One of 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'Beta' or 'Gamma'
 var wheel_offset = ['A', 'A', 'A', 'A'];// initial rotor offsets, Left to Right with Refelctor first.
 var pegboard_mappings = ['AX','QT'];    // mappings of letters for the pegboard
 var enigma = new Enigma( wheels, wheel_offsets, pegboard_mappings );
 ```
+There is no validation yet that your configuration is valid. Here are the rules:
+
+1. You can use each wheel only once in a configuration
+2. I-VIII can only be used in the three right-most positions
+3. BThin and CThin reflectors can only be, and must be followed by one of BThin or CThin wheels 
+plus 3 more wheels as usual.
 
 ### Configuration
 You can reconfigure after construction.
