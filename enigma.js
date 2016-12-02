@@ -49,18 +49,22 @@ var swapCharsInString = function(str,pair){
 
 var Wheel = function(name, type, offset){
   this._name = name;
-  this._mapping = [alphabet, type[0]];
   this._triggers = (type[1]||'').split('').map(function(t){ return alphabet.indexOf(t); });
   this._initial_offset = alphabet.indexOf(offset || 'A');
+  this._wiremaps = [[],[]];
+  for(var i=0,j=alphabet.length; i<j; i++){
+    var o=alphabet.indexOf(type[0][i]);
+    this._wiremaps[0][i] = o;
+    this._wiremaps[1][o] = i;
+  }
   this.reset();
 }
   Wheel.prototype.map = function(i, dir){ 
     dir = (dir==-1) ? 1 : 0;
-    var _index = ( i + this._ticks ) % alphabet.length,
-        out_letter = this._mapping[1-dir][_index],
-        out_index = this._mapping[dir].indexOf(out_letter) - this._ticks;
-    if(out_index < 0) out_index = alphabet.length + out_index;
-    return out_index;
+    var in_pin = (i + this._ticks) % alphabet.length;
+    var out_pin = this._wiremaps[dir][ in_pin ] - this._ticks;
+    if(out_pin < 0) out_pin = alphabet.length + out_pin;
+    return out_pin;
   }
   Wheel.prototype.reset = function(){ this._ticks = this._initial_offset; return this; }
   Wheel.prototype.tick = function(){ 
